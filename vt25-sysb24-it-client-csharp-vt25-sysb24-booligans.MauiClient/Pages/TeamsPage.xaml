@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewmodels="clr-namespace:vt25_sysb24_it_client_csharp_vt25_sysb24_booligans.MauiClient.ViewModels"
+             xmlns:models="clr-namespace:vt25_sysb24_it_client_csharp_vt25_sysb24_booligans.MauiClient.Models"
+             x:DataType="viewmodels:TeamsViewModel"
+             x:Class="vt25_sysb24_it_client_csharp_vt25_sysb24_booligans.MauiClient.Pages.TeamsPage"
+             x:Name="teamsPage"
+             Title="Team Directory">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="10">
+            <!-- SearchBar for filtering teams -->
+            <Frame Padding="0"
+                   BorderColor="#cccccc"
+                   CornerRadius="5"
+                   HasShadow="False">
+                <SearchBar Placeholder="Search by team number (e.g. T001)"
+                           Text="{Binding SearchText}"
+                           SearchCommand="{Binding SearchCommand}"
+                           SearchCommandParameter="{Binding SearchText}"
+                           HorizontalOptions="Fill"
+                           BackgroundColor="White"
+                           TextColor="#333333"
+                           PlaceholderColor="#888888"
+                           CancelButtonColor="#555555"/>
+            </Frame>
+
+            <!-- Teams Collection with Expander -->
+            <CollectionView x:Name="TeamsCollection"
+                            ItemsSource="{Binding Teams}"
+                            Margin="0,20,0,0">
+                <!-- Add ItemsLayout here for spacing between items -->
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"
+                                       ItemSpacing="30"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Team">
+                        <!-- Wrap in Frame for border and shadow -->
+                        <Frame Margin="0,0,0,20"
+                               BorderColor="Black"
+                               BackgroundColor="White"
+                               CornerRadius="15"
+                               HasShadow="False"
+                               Padding="2">
+                            <toolkit:Expander IsExpanded="False" x:Name="teamExpander">
+                                <toolkit:Expander.Header>
+                                    <!-- Team Header -->
+                                    <Grid Padding="12"
+                                          BackgroundColor="White"
+                                          ColumnSpacing="10">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Team Number and Name -->
+                                        <Label Text="Team Number:"
+                                               Grid.Column="0"
+                                               Grid.Row="0"
+                                               FontAttributes="Bold"
+                                               VerticalOptions="Center"/>
+                                        <Label Text="{Binding TeamNo}"
+                                               Grid.Column="1"
+                                               Grid.Row="0"
+                                               FontSize="Medium"
+                                               VerticalOptions="Center"/>
+                                        <Label Text="Team Name:"
+                                               Grid.Column="0"
+                                               Grid.Row="1"
+                                               FontAttributes="Bold"
+                                               VerticalOptions="Center"/>
+                                        <Label Text="{Binding TeamName}"
+                                               Grid.Column="1"
+                                               Grid.Row="1"
+                                               FontSize="Medium"
+                                               VerticalOptions="Center"/>
+
+                                        <!-- Wins and Losses -->
+                                        <Label Grid.Column="2"
+                                               Grid.Row="0"
+                                               FontAttributes="Bold"
+                                               FontSize="Small"
+                                               HorizontalOptions="End"
+                                               VerticalOptions="Center"
+                                               Text="{Binding Wins, StringFormat='Wins: {0}'}"/>
+
+                                        <Label Grid.Column="2"
+                                               Grid.Row="1"
+                                               FontAttributes="Bold"
+                                               FontSize="Small"
+                                               HorizontalOptions="End"
+                                               VerticalOptions="Center"
+                                               Text="{Binding Losses, StringFormat='Losses: {0}'}"/>
+
+                                        <!-- Expansion Indicator Arrow -->
+                                        <Label Grid.Column="3"
+                                               Grid.RowSpan="2"
+                                               FontSize="24"
+                                               TextColor="#333333"
+                                               Margin="12,0,0,0"
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="End">
+                                            <Label.Triggers>
+                                                <DataTrigger TargetType="Label"
+                                                             Binding="{Binding Source={RelativeSource AncestorType={x:Type toolkit:Expander}}, Path=IsExpanded}"
+                                                             Value="True">
+                                                    <Setter Property="Text"
+                                                            Value="▲"/>
+                                                    <Setter Property="TextColor"
+                                                            Value="#000000"/>
+                                                </DataTrigger>
+                                                <DataTrigger TargetType="Label"
+                                                             Binding="{Binding Source={RelativeSource AncestorType={x:Type toolkit:Expander}}, Path=IsExpanded}"
+                                                             Value="False">
+                                                    <Setter Property="Text"
+                                                            Value="▼"/>
+                                                    <Setter Property="TextColor"
+                                                            Value="#333333"/>
+                                                </DataTrigger>
+                                            </Label.Triggers>
+                                        </Label>
+                                    </Grid>
+                                </toolkit:Expander.Header>
+
+                                <!-- Players List (Content of Expander) -->
+                                <VerticalStackLayout Padding="15"
+                                                     BackgroundColor="#f8f8f8">
+                                    <Label Text="Players"
+                                           FontAttributes="Bold"
+                                           FontSize="16"
+                                           Margin="0,0,0,8"/>
+
+                                    <CollectionView ItemsSource="{Binding Players}"
+                                                    HeightRequest="120">
+                                        <CollectionView.ItemsLayout>
+                                            <GridItemsLayout Orientation="Vertical"
+                                                             Span="2"/>
+                                        </CollectionView.ItemsLayout>
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate x:DataType="models:Player">
+                                                <Grid Padding="5"
+                                                      ColumnDefinitions="Auto,*,Auto">
+                                                    <!-- Player shirt number -->
+                                                    <Label Text="{Binding PlayerShirtNo, StringFormat='#{0}'}"
+                                                           Grid.Column="0"
+                                                           FontAttributes="Bold"/>
+
+                                                    <!-- Player name -->
+                                                    <Label Grid.Column="1"
+                                                           Margin="5,0,0,0">
+                                                        <Label.Text>
+                                                            <MultiBinding StringFormat="{}{0} {1}">
+                                                                <Binding Path="FirstName"/>
+                                                                <Binding Path="LastName"/>
+                                                            </MultiBinding>
+                                                        </Label.Text>
+                                                    </Label>
+
+                                                    <!-- Player position -->
+                                                    <Label Text="{Binding Position}"
+                                                           Grid.Column="2"
+                                                           FontAttributes="Italic"
+                                                           FontSize="Small"
+                                                           HorizontalOptions="End"/>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+
+                                        <CollectionView.EmptyView>
+                                            <Label Text="No players available"
+                                                   IsVisible="{Binding Source={RelativeSource AncestorType={x:Type toolkit:Expander}}, Path=IsExpanded}"
+                                                   HorizontalOptions="Center"
+                                                   TextColor="#999999"
+                                                   FontSize="12"/>
+                                        </CollectionView.EmptyView>
+                                    </CollectionView>
+                                </VerticalStackLayout>
+                            </toolkit:Expander>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <CollectionView.EmptyView>
+                    <Grid>
+                        <!-- Loading indicator for initial state -->
+                        <ActivityIndicator IsRunning="{Binding IsLoading}"
+                                           IsVisible="{Binding IsLoading}"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center"/>
+                                           
+                        <!-- Only show "No results" after a search -->
+                        <VerticalStackLayout HorizontalOptions="Center"
+                                             VerticalOptions="Center"
+                                             Padding="20"
+                                             IsVisible="{Binding ShowNoResultsMessage}">
+                            <Label Text="No search results found"
+                                   FontSize="18"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="Please try a different search criteria"
+                                   FontSize="14"
+                                   TextColor="#666666"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

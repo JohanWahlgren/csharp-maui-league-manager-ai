@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="vt25_sysb24_it_client_csharp_vt25_sysb24_booligans.MauiClient.Pages.MainPage"
+             Title="Beer League Manager">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+        <!-- Header -->
+        <VerticalStackLayout Grid.Row="0" Padding="20,20,20,10">
+            <!-- Beer League Manager Logo -->
+            <Image Source="beer_league_manager_fully_transparent_fixed" 
+                   HeightRequest="300"
+                   HorizontalOptions="Center"
+                   Margin="0,10,0,10"/>
+
+            <Label Text="Welcome to Beer League Manager!" 
+                   FontSize="26" 
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="0,5,0,0"/>
+            <Label Text="Tap on a button below to explore teams, players, or reports."
+                   FontSize="16" 
+                   TextColor="#666666"
+                   HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+
+        <!-- Main content -->
+        <VerticalStackLayout Grid.Row="1" 
+                             Padding="30" 
+                             Spacing="20" 
+                             VerticalOptions="Center">
+                             
+            <!-- Teams Button -->
+            <Button Text="View Teams"
+                    Command="{Binding NavigateToTeamsCommand}"
+                    HeightRequest="60"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    BackgroundColor="#2196F3"
+                    TextColor="White"
+                    CornerRadius="10"/>
+                    
+            <!-- Players Button -->
+            <Button Text="View Players"
+                    Command="{Binding NavigateToPlayersCommand}"
+                    HeightRequest="60"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White"
+                    CornerRadius="10"/>
+
+            <!-- Team Reports Button - Fixed command name -->
+            <Button Text="Team Reports"
+                    Command="{Binding NavigateToTeamsReportsCommand}"
+                    HeightRequest="60"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    BackgroundColor="#FF9800"
+                    TextColor="White"
+                    CornerRadius="10"/>
+
+        </VerticalStackLayout>
+        
+        <!-- Footer -->
+        <Label Grid.Row="2" 
+               Text="© 2025 Beer League Manager"
+               FontSize="12"
+               TextColor="#999999"
+               HorizontalOptions="Center"
+               Margin="0,0,0,20"/>
+    </Grid>
+</ContentPage>

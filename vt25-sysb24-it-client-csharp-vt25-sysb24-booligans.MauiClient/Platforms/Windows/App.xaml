@@ -1,0 +1,8 @@
+﻿<maui:MauiWinUIApplication
+    x:Class="vt25_sysb24_it_client_csharp_vt25_sysb24_booligans.MauiClient.WinUI.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:maui="using:Microsoft.Maui"
+    xmlns:local="using:vt25_sysb24_it_client_csharp_vt25_sysb24_booligans.MauiClient.WinUI">
+
+</maui:MauiWinUIApplication>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:vt25_sysb24_it_client_csharp_vt25_sysb24_booligans.MauiClient.ViewModels"
+             x:DataType="viewmodels:TeamsReportViewModel"
+             x:Class="vt25_sysb24_it_client_csharp_vt25_sysb24_booligans.MauiClient.Pages.TeamsReportPage"
+             Title="Team Analysis Report">
+
+    <Grid Padding="20"
+          RowSpacing="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header & Generate Button -->
+        <Grid Grid.Row="0"
+              ColumnDefinitions="*,Auto">
+            <Label Grid.Column="0"
+                   Text="Select a team from the list below:"
+                   FontSize="16"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center"
+                   Margin="0,40,0,5"/>
+
+            <Button Grid.Column="1"
+                    Text="Generate Report"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White"
+                    Command="{Binding GenerateReportCommand}"
+                    HorizontalOptions="End"/>
+        </Grid>
+
+        <!-- Teams CollectionView -->
+        <Frame Grid.Row="1"
+               BorderColor="#cccccc"
+               Padding="10"
+               CornerRadius="8"
+               HasShadow="False">
+            <CollectionView ItemsSource="{Binding Teams}"
+                            SelectionMode="Single"
+                            SelectedItem="{Binding SelectedTeam}"
+                            HeightRequest="200">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="viewmodels:TeamDisplayItem">
+                        <Grid Padding="10">
+                            <Label Text="{Binding DisplayText}"
+                                   FontSize="16"
+                                   TextColor="#333333"
+                                   VerticalOptions="Center"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Frame>
+
+        <!-- Team Selection Reminder -->
+        <Border Grid.Row="1"
+                StrokeThickness="3"
+                Stroke="Red"
+                StrokeDashArray="3,3"
+                StrokeDashOffset="1"
+                IsVisible="{Binding ShowSelectionReminder}"
+                ZIndex="1">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10"/>
+            </Border.StrokeShape>
+        </Border>
+
+        <!-- Report Display with Loading Indicator Inside -->
+        <Frame Grid.Row="2"
+               BorderColor="#e0e0e0"
+               BackgroundColor="#f9f9f9"
+               Padding="15"
+               CornerRadius="8"
+               HasShadow="False">
+            <Grid>
+                <!-- Loading Indicator -->
+                <ActivityIndicator IsRunning="{Binding IsLoading}"
+                                   IsVisible="{Binding IsLoading}"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   Scale="2.0"
+                                   Color="#4CAF50"/>
+
+                <!-- Report Text -->
+                <ScrollView IsVisible="{Binding IsNotLoading}">
+                    <Label Text="{Binding ReportText}"
+                           FontSize="16"
+                           LineBreakMode="WordWrap"/>
+                </ScrollView>
+            </Grid>
+        </Frame>
+    </Grid>
+</ContentPage>

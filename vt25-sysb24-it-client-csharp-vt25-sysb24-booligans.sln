@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vt25-sysb24-it-client-csharp-vt25-sysb24-booligans.MauiClient", "vt25-sysb24-it-client-csharp-vt25-sysb24-booligans.MauiClient\vt25_sysb24_it_client_csharp.vt25_sysb24_booligans.MauiClient.csproj", "{8424B661-EB9E-43D0-8E08-8B358AD89B53}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{38E47124-848B-5C14-93B6-65F5D8E015E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38E47124-848B-5C14-93B6-65F5D8E015E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38E47124-848B-5C14-93B6-65F5D8E015E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38E47124-848B-5C14-93B6-65F5D8E015E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8424B661-EB9E-43D0-8E08-8B358AD89B53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8424B661-EB9E-43D0-8E08-8B358AD89B53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8424B661-EB9E-43D0-8E08-8B358AD89B53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8424B661-EB9E-43D0-8E08-8B358AD89B53}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4BA796D2-D0CB-43E5-A561-28DB589D98B0}
+	EndGlobalSection
+EndGlobal

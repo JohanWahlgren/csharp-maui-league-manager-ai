@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:pages="clr-namespace:vt25_sysb24_it_client_csharp_vt25_sysb24_booligans.MauiClient.Pages"
+       x:Class="vt25_sysb24_it_client_csharp_vt25_sysb24_booligans.MauiClient.AppShell"
+       FlyoutBehavior="Disabled">
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="#455A64" />
+                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="White" />
+            </Style>
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <!-- Starting page -->
+    <ShellContent 
+        Route="main"
+        ContentTemplate="{DataTemplate pages:MainPage}"
+        Title="Home" /> <!-- Not used since Flyout is disabled -->
+</Shell>
+<!-- 
+AppShell.xaml: Defines the app's navigation structure. 
+Loads MainPage first and disables the flyout menu. 
+Applies global navigation styles (colors) and enables route-based navigation.
+-->
