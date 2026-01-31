@@ -1,1 +1,16 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/0ZTGBXKn)
+# League manager AI (.NET MAUI)
+
+An AI-enhanced version of the League Manager client. This application integrates OpenAI's GPT Models to act as a virtual sports analyst, generating concise team reports and insights based on roster data.
+
+## Context
+This project is an extension of the [League manager client (.NET MAUI)](https://github.com/JohanWahlgren/csharp-maui-league-manager-client.git)
+
+## Tech stack:
+- C# .NET MAUI
+- OpenAI API
+- JSON Serialization
+
+## Acknowledgements:
+This project was developed as a group assignment for the course SYSB24 at Lund University. 
+
+While this repository is hosted on my personal profile, the code represents a collaborative effort between myself and my team members.
